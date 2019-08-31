@@ -1,7 +1,21 @@
 import Link from 'next/link';
+import Head from 'next/head';
+import Router from 'next/router';
+import NProgress from 'nprogress';
+
+Router.onRouteChangeStart = url => {
+    console.log(url);
+    NProgress.start()
+}
+
+Router.onRouteChangeComplete = () => NProgress.done();
+Router.onRouteChangeError = () => NProgress.done();
 
 export default ({ children, title }) => (
     <div className="root">
+        <Head>
+            <title>NextPortfolio</title>
+        </Head>
         <header>
             <Link href="/"><a>Home</a></Link>
             <Link href="/about"><a>About</a></Link>
